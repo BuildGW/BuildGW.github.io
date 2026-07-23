@@ -1,0 +1,889 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="饺子">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="openclaw1、OpenClaw安装比做：OpenClaw安装前置要求：    组件 要求 验证命令    Node.js 需安装npm和node npm -v &#x2F; node -v   Git for Windows 必须安装，用于执行bash脚本 where.exe git   PowerShell Windows自带 -   Git Bash npm需要构建bash环境 需配置路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openclaw安装与使用（接入本地或云端模型）">
+<meta property="og:url" content="https://buildgw.github.io/2026/04/20/openclaw/openclaw%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%EF%BC%88%E6%8E%A5%E5%85%A5%E6%9C%AC%E5%9C%B0%E6%88%96%E4%BA%91%E7%AB%AF%E6%A8%A1%E5%9E%8B%EF%BC%89/index.html">
+<meta property="og:site_name" content="饺子の日志">
+<meta property="og:description" content="openclaw1、OpenClaw安装比做：OpenClaw安装前置要求：    组件 要求 验证命令    Node.js 需安装npm和node npm -v &#x2F; node -v   Git for Windows 必须安装，用于执行bash脚本 where.exe git   PowerShell Windows自带 -   Git Bash npm需要构建bash环境 需配置路">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-23T07:40:05.065Z">
+<meta property="article:author" content="饺子">
+<meta property="article:tag" content="openclaw">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>openclaw安装与使用（接入本地或云端模型） - 饺子の日志</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"buildgw.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>饺子の日记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="openclaw安装与使用（接入本地或云端模型）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-20 00:00" pubdate>
+          2026年4月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">openclaw安装与使用（接入本地或云端模型）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="openclaw"><a href="#openclaw" class="headerlink" title="openclaw"></a>openclaw</h1><h2 id="1、OpenClaw安装"><a href="#1、OpenClaw安装" class="headerlink" title="1、OpenClaw安装"></a>1、OpenClaw安装</h2><p><em>比做：OpenClaw安装前置要求：</em></p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>要求</th>
+<th>验证命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node.js</td>
+<td>需安装npm和node</td>
+<td>npm -v &#x2F; node -v</td>
+</tr>
+<tr>
+<td>Git for Windows</td>
+<td>必须安装，用于执行bash脚本</td>
+<td>where.exe git</td>
+</tr>
+<tr>
+<td>PowerShell</td>
+<td>Windows自带</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Git Bash</td>
+<td>npm需要构建bash环境</td>
+<td>需配置路径npm config set script-shell（指定你的路径） “D:\Program Files\Git\bin\bash.exe”</td>
+</tr>
+</tbody></table>
+<h3 id="一、源码安装步骤："><a href="#一、源码安装步骤：" class="headerlink" title="一、源码安装步骤："></a>一、源码安装步骤：</h3><h4 id="1-从github上下载源代码"><a href="#1-从github上下载源代码" class="headerlink" title="1.从github上下载源代码"></a>1.从github上下载源代码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/openclaw/openclaw.git<br><span class="hljs-built_in">cd</span> openclaw<br></code></pre></td></tr></table></figure>
+
+<p><em>如果clone报错：连接超时，进行这步操作。</em></p>
+<ol>
+<li>首先打开你的翻墙软件VPN。若是没有，推荐一款我在用的：<a target="_blank" rel="noopener" href="https://sakura-cat1.com/#/register?code=nX5mrgn9">https://sakura-cat1.com/#/register?code=nX5mrgn9</a></li>
+<li>强制git使用系统代理。通常代理软件的 HTTP 监听端口是 <code>7890</code> 或 <code>10809</code>，请根据你的软件实际端口修改下面的命令：用我推荐的软件是7897</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 设置 HTTP 代理</span><br>git config --global http.proxy 127.0.0.1:7897<br><br><span class="hljs-comment"># 设置 HTTPS 代理</span><br>git config --global https.proxy 127.0.0.1:7897<br></code></pre></td></tr></table></figure>
+
+<p><em>取消代理设置（如果不需要了）：</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global --<span class="hljs-built_in">unset</span> http.proxy<br>git config --global --<span class="hljs-built_in">unset</span> https.proxy<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-安装依赖并构建"><a href="#2-安装依赖并构建" class="headerlink" title="2.安装依赖并构建"></a>2.安装依赖并构建</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装依赖（约 1000+ 包，可能需要几分钟）</span><br>npm install<br><span class="hljs-comment"># 构建项目（会生成 dist 目录）</span><br>npm run build<br><span class="hljs-comment"># 全局链接，使命令行可用</span><br>npm <span class="hljs-built_in">link</span><br><span class="hljs-comment"># 验证安装</span><br>openclaw --version<br><span class="hljs-comment"># 应显示：2026.3.3</span><br></code></pre></td></tr></table></figure>
+
+<p>npm 安装失败执行以下步骤，另开一个管理员powershell</p>
+<p><em>使用pnpm安装，后续npm 相关命令需全部替换为pnpm 命令。</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># npm 安装失败执行以下步骤</span><br>npm install -g pnpm<br><span class="hljs-comment"># 关闭所有命令行</span><br><span class="hljs-comment"># 清理旧文件：删除 node_modules 目录，删除 package-lock.json 文件</span><br><span class="hljs-comment"># 进入项目目录</span><br><span class="hljs-built_in">cd</span> D:\AI\openclaw<br><span class="hljs-comment"># 安装依赖</span><br>pnpm install<br><span class="hljs-comment"># 重新构建</span><br>pnpm build<br><span class="hljs-comment"># 或者：pnpm run build</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>npm</strong>：每次运行脚本时，都会重新生成一个临时的环境变量路径，稍微慢一点点。</li>
+<li><strong>pnpm</strong>：利用硬链接（Hard Links）和全局存储，执行速度非常快，且更节省磁盘空间。</li>
+</ul>
+<h3 id="二、启动配置向导"><a href="#二、启动配置向导" class="headerlink" title="二、启动配置向导"></a>二、启动配置向导</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw onboard --install-daemon<br></code></pre></td></tr></table></figure>
+
+<h4 id="配置选项选择"><a href="#配置选项选择" class="headerlink" title="配置选项选择"></a>配置选项选择</h4><ol>
+<li><p>我明白默认情况下这是个人使用的，共享&#x2F;多用户需要使用锁屏保护。是否继续？</p>
+<p><strong>设置模式</strong></p>
+<p>快速开始</p>
+</li>
+<li><p><strong>快速开始</strong></p>
+<ul>
+<li>网关端口：18789</li>
+<li>网关绑定：回环地址 (127.0.0.1)</li>
+<li>网关认证：令牌（默认）</li>
+<li>Tailscale 暴露：关闭</li>
+<li>直连聊天频道。</li>
+</ul>
+</li>
+<li><p><strong>模型&#x2F;认证提供商</strong></p>
+<p>Anthropic (Claude CLI + 设置令牌 + API 密钥)</p>
+<p>BytePlus (火山引擎)</p>
+</li>
+<li><p><strong>我选择千问模型</strong></p>
+<ul>
+<li>standard API Key for China</li>
+</ul>
+</li>
+<li><p><strong>输入百炼api key</strong></p>
+</li>
+<li><p><strong>设置默认模型</strong></p>
+</li>
+<li><p><strong>Channel status</strong> <strong>频道状态</strong>:展示了支持多种聊天平台和协议的软件</p>
+</li>
+<li><p><strong>How channels work</strong>频道如何接入（我先跳过了，后续可设置）</p>
+</li>
+<li><p><strong>Search provider</strong>选择聊天软件：再次跳过Skip for now (Configure later with openclaw configure –section web)</p>
+</li>
+<li><p><strong>Skills status</strong>现有的Skill状态</p>
+</li>
+<li><p>**Configure skills now? (recommended)**现在开始设置skill。可选或跳过，后面用到那个装那个。</p>
+</li>
+<li><p><strong>Enable hooks?<strong>是否要启用</strong>“钩子”</strong>：我选了boot-md,系统启动时自动加载 Markdown 文件或配置.</p>
+</li>
+<li><p>全布设置完毕后，第一次会自动启动。</p>
+</li>
+</ol>
+<h3 id="三、后续启动openclaw"><a href="#三、后续启动openclaw" class="headerlink" title="三、后续启动openclaw"></a>三、后续启动openclaw</h3><p>首先启动openclaw服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 官方守护进程模式</span><br>openclaw daemon start<br><span class="hljs-comment"># 查看运行状态</span><br>openclaw status<br><span class="hljs-comment"># 查看日志</span><br>openclaw logs<br><span class="hljs-comment"># 停止服务</span><br>openclaw daemon stop<br></code></pre></td></tr></table></figure>
+
+<p>稍等一会儿，会出现一个新弹窗提示listening on ws:&#x2F;&#x2F;127.0.0.1:18789。然后浏览器打开127.0.0.1:18789即可进入。新弹窗不可关闭，关闭后服务终止。</p>
+<p><em>若提示需要通过openclaw dashboard启动，则在原有窗口输入：</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw dashboard<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、与其他软件集成配置"><a href="#2、与其他软件集成配置" class="headerlink" title="2、与其他软件集成配置"></a>2、与其他软件集成配置</h2><p>选择接入聊天软件 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw channels add<br></code></pre></td></tr></table></figure>
+
+<p>重新配置openclaw浏览器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw configure --section web<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、连接远程API-Key"><a href="#3、连接远程API-Key" class="headerlink" title="3、连接远程API Key"></a>3、连接远程API Key</h2><h3 id="方式一：使用命令行配置（推荐）"><a href="#方式一：使用命令行配置（推荐）" class="headerlink" title="方式一：使用命令行配置（推荐）"></a>方式一：使用命令行配置（推荐）</h3><p>这种方式通过交互式引导完成，简单快捷，适合新手。</p>
+<ol>
+<li><p><strong>启动配置向导</strong><br>在 PowerShell 或终端中执行以下命令，进入交互式问答模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw onboard<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>按提示操作</strong><br>根据向导的提示，依次选择你的模型提供商（如阿里云百炼）、输入 API Key 和对应的 Base URL，并选择默认模型即可。</p>
+</li>
+</ol>
+<p>或者，你也可以使用更直接的命令来设置，例如配置通义千问模型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 设置主模型</span><br>openclaw config <span class="hljs-built_in">set</span> agents.defaults.model.primary <span class="hljs-string">&quot;dashscope-api/qwen3.6-plus&quot;</span><br><br><span class="hljs-comment"># 2. 配置你的 API Key (将 sk-xxx 替换为你的真实密钥)</span><br>openclaw config <span class="hljs-built_in">set</span> providers.dashscope-api.apikey <span class="hljs-string">&quot;sk-你的千问API Key&quot;</span><br><br><span class="hljs-comment"># 3. 配置 Base URL (国内使用)</span><br>openclaw config <span class="hljs-built_in">set</span> providers.dashscope-api.baseurl <span class="hljs-string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span><br><br><span class="hljs-comment"># 4. 重启服务使配置生效</span><br>openclaw gateway restart<br></code></pre></td></tr></table></figure>
+
+<p>配置完成后，可以通过 <code>openclaw chat &quot;你好&quot;</code> 来测试是否成功。</p>
+<h3 id="方式二：手动修改配置文件"><a href="#方式二：手动修改配置文件" class="headerlink" title="方式二：手动修改配置文件"></a>方式二：手动修改配置文件</h3><p>这种方式更灵活，适合需要精细调整参数的技术用户。</p>
+<ol>
+<li><p><strong>找到配置文件</strong></p>
+<ul>
+<li><strong>Windows:</strong> <code>C:\Users\你的用户名\.openclaw\openclaw.json</code></li>
+<li><strong>macOS &#x2F; Linux:</strong> <code>~/.openclaw/openclaw.json</code></li>
+</ul>
+</li>
+<li><p><strong>编辑配置文件</strong><br>用文本编辑器打开 <code>openclaw.json</code>，找到 <code>model</code> 或 <code>models</code> 相关的配置部分，并根据你使用的模型服务商进行修改。</p>
+<p><strong>示例：配置阿里云百炼 (DashScope)</strong></p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;<br>  <span class="hljs-string">&quot;models&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;mode&quot;</span>: <span class="hljs-string">&quot;merge&quot;</span>,<br>    <span class="hljs-string">&quot;providers&quot;</span>: &#123;<br>      <span class="hljs-string">&quot;dashscope-api&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>,<br>        <span class="hljs-string">&quot;apiKey&quot;</span>: <span class="hljs-string">&quot;sk-你的千问API Key&quot;</span>,<br>        <span class="hljs-string">&quot;models&quot;</span>: [<br>          &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;qwen3.6-plus&quot;</span>,<br>            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;通义千问Qwen3.6-Plus&quot;</span>,<br>            <span class="hljs-string">&quot;contextWindow&quot;</span>: <span class="hljs-number">1000000</span>,<br>            <span class="hljs-string">&quot;maxTokens&quot;</span>: <span class="hljs-number">65536</span>,<br>            <span class="hljs-string">&quot;temperature&quot;</span>: <span class="hljs-number">0.7</span><br>          &#125;<br>        ]<br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;agents&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;defaults&quot;</span>: &#123;<br>      <span class="hljs-string">&quot;model&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;primary&quot;</span>: <span class="hljs-string">&quot;dashscope-api/qwen3.6-plus&quot;</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>请将 <code>apiKey</code> 的值替换为你自己的 API Key。</p>
+</li>
+<li><p><strong>重启服务</strong><br>保存文件后，在终端中执行以下命令重启 OpenClaw 服务，使配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw gateway restart<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="进阶：使用环境变量（更安全）"><a href="#进阶：使用环境变量（更安全）" class="headerlink" title="进阶：使用环境变量（更安全）"></a>进阶：使用环境变量（更安全）</h3><p>为了避免将 API Key 直接明文写在配置文件中，推荐使用环境变量。</p>
+<ol>
+<li><p><strong>设置环境变量</strong></p>
+<ul>
+<li><p><strong>Windows (PowerShell):</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 设置永久环境变量</span><br>[<span class="hljs-type">Environment</span>]::SetEnvironmentVariable(<span class="hljs-string">&quot;DASHSCOPE_API_KEY&quot;</span>, <span class="hljs-string">&quot;sk-你的千问API Key&quot;</span>, <span class="hljs-string">&quot;User&quot;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>macOS &#x2F; Linux (Zsh&#x2F;Bash):</strong></p>
+<p>bash</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 在 ~/.zshrc 或 ~/.bashrc 文件中添加</span><br>export DASHSCOPE_API_KEY=<span class="hljs-string">&quot;sk-你的千问API Key&quot;</span><br><span class="hljs-comment"># 然后执行 source ~/.zshrc 使其生效</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>在配置文件中引用</strong><br>修改 <code>openclaw.json</code>，将 <code>apiKey</code> 的值改为环境变量的引用格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">&#123;<br>  <span class="hljs-string">&quot;model&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;provider&quot;</span>: <span class="hljs-string">&quot;dashscope&quot;</span>,<br>    <span class="hljs-string">&quot;apiKey&quot;</span>: <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;DASHSCOPE_API_KEY&#125;</span>&quot;</span>,<br>    <span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;https://dashscope.aliyuncs.com/api/v1&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>重启服务后，OpenClaw 会自动读取你设置的环境变量来获取 API Key。</p>
+</li>
+</ol>
+<h2 id="4、接入本地部署模型"><a href="#4、接入本地部署模型" class="headerlink" title="4、接入本地部署模型"></a>4、接入本地部署模型</h2><h3 id="方式一：命令行配置三步曲（没跑通）"><a href="#方式一：命令行配置三步曲（没跑通）" class="headerlink" title="方式一：命令行配置三步曲（没跑通）"></a>方式一：命令行配置三步曲（没跑通）</h3><p>假设你已经用 <code>llama.cpp</code> 在本地启动了模型服务（默认端口 8080），并且模型名称为 <code>my-local-model</code>。</p>
+<p>请在 PowerShell 或终端中依次执行以下三条命令：</p>
+<h4 id="1-配置-API-地址"><a href="#1-配置-API-地址" class="headerlink" title="1. 配置 API 地址"></a>1. 配置 API 地址</h4><p>告诉 OpenClaw 去哪里找你的本地模型服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 主模型Qwen3.5-9B-Q4_K_M.gguf  视觉模型mmproj-Qwen3.5-9B-BF16.gguf</span><br><br>openclaw config <span class="hljs-built_in">set</span> models.providers.ollama.baseUrl <span class="hljs-string">&quot;http://localhost:8080/v1&quot;</span><br>openclaw config <span class="hljs-built_in">set</span> models.providers.ollama.models <span class="hljs-string">&quot;[&#123;\&quot;id\&quot;: \&quot;my-local-model\&quot;, \&quot;name\&quot;: \&quot;My Local Llama\&quot;&#125;]&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><em>注意：虽然这里用的是 <code>ollama</code> 作为提供商名称，但这只是为了复用配置结构。关键是 <code>baseUrl</code> 要指向你 <code>llama.cpp</code> 的地址。</em></p>
+<h4 id="2-配置-API-Key"><a href="#2-配置-API-Key" class="headerlink" title="2. 配置 API Key"></a>2. 配置 API Key</h4><p><code>llama.cpp</code> 默认不需要 API Key，但 OpenClaw 要求填写，你可以随便填一个占位符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw config <span class="hljs-built_in">set</span> models.providers.ollama.apiKey <span class="hljs-string">&quot;not-needed&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-设置默认模型"><a href="#3-设置默认模型" class="headerlink" title="3. 设置默认模型"></a>3. 设置默认模型</h4><p>指定 OpenClaw 默认使用哪个模型。这里的 <code>my-local-model</code> 需要和你启动 <code>llama-server</code> 时定义的模型 ID 一致。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw config <span class="hljs-built_in">set</span> agents.defaults.model.primary <span class="hljs-string">&quot;ollama/my-local-model&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><em>注意：这里的前缀 <code>ollama/</code> 对应了第一步配置中的 <code>models.providers.ollama</code>。</em></p>
+<h4 id="验证与生效"><a href="#验证与生效" class="headerlink" title="验证与生效"></a>验证与生效</h4><ol>
+<li><p><strong>验证配置</strong>：你可以使用以下命令查看配置是否写入成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw config get models.providers.ollama<br></code></pre></td></tr></table></figure>
+
+<p>如果返回的信息中包含你刚才设置的 <code>baseUrl</code> 和 <code>apiKey</code>，说明配置成功。</p>
+</li>
+<li><p><strong>重启服务</strong>：配置修改后，必须重启 OpenClaw 才能生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw gateway restart<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>完成以上步骤后，你的 OpenClaw 就已经通过命令行成功接入本地模型了。</p>
+<h3 id="方式二：手动修改配置文件（已跑通）"><a href="#方式二：手动修改配置文件（已跑通）" class="headerlink" title="方式二：手动修改配置文件（已跑通）"></a>方式二：手动修改配置文件（已跑通）</h3><ol>
+<li><p>找到配置文件（通常在 <code>C:\Users\你的用户名\.openclaw\openclaw.json</code> 或项目根目录）。</p>
+</li>
+<li><p><em>注意：建议复制出一个副本备份，再修改</em></p>
+</li>
+<li><p>在 <code>providers</code> 部分添加一个自定义配置（或者直接修改现有的），并在 <code>agents</code> 中指定使用它。</p>
+<p><strong>修改后的 JSON 配置示例：</strong></p>
+</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;agents&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;defaults&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;workspace&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Users\\13789\\.openclaw\\workspace&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;models&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;local-llama/Qwen3.5-9B-Q4_K_M&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;alias&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Local Qwen 9B&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;model&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;primary&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;local-llama/Qwen3.5-9B-Q4_K_M&quot;</span><br>        <span class="hljs-comment">// 注意：这里已经移除了 fallbacks 数组</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;gateway&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;local&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;auth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;token&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;3965a5f9cf5efc7d9a343c4b1869d9e49e2961f5454253d3&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">18789</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;bind&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;loopback&quot;</span><br>    <span class="hljs-comment">// 为了简洁，省略了 tailscale 和 nodes 的默认配置，保留它们也没问题</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;tools&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;profile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;coding&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;web&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;search&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;provider&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;duckduckgo&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;enabled&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;models&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;merge&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;providers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;local-llama&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;baseUrl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://localhost:8080/v1&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;apiKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;sk-no-key-needed&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;api&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;openai-completions&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;models&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Qwen3.5-9B-Q4_K_M&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Qwen3.5-9B-Q4_K_M&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;input&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;text&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;image&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;contextWindow&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">32768</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;maxTokens&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">32768</span><br>          <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;auth&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;profiles&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;local-llama:default&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;provider&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;local-llama&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;api_key&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>关键参数解释：</strong></p>
+<ul>
+<li><code>baseUrl</code>: 填 <code>http://localhost:8080/v1</code>。注意末尾的 <code>/v1</code> 是必须的，因为 <code>llama.cpp</code> 模拟的是 OpenAI 的 v1 接口。</li>
+<li><code>apiKey</code>: <code>llama.cpp</code> 默认不需要 Key，随便填一个（如 <code>not-needed</code>）即可。</li>
+<li><code>id</code>: 这里填 <code>my-local-model</code>，OpenClaw 会通过这个名字来调用它。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>你的配置 (baseUrl)</th>
+<th>OpenClaw 自动拼接的路径</th>
+<th>最终访问的地址</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不带 &#x2F;v1</td>
+<td><code>/v1/chat/completions</code></td>
+<td><code>http://localhost:8080/v1/chat/completions</code></td>
+<td>404 报错 (找不到路)</td>
+</tr>
+<tr>
+<td>带 &#x2F;v1</td>
+<td><code>/chat/completions</code></td>
+<td><code>http://localhost:8080/v1/chat/completions</code></td>
+<td>成功 (找到了兼容接口)</td>
+</tr>
+</tbody></table>
+<p><strong>重启并测试：</strong></p>
+<ol>
+<li>保存 <code>openclaw.json</code> 文件。</li>
+<li>重启 OpenClaw 服务：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">openclaw gateway restart<br></code></pre></td></tr></table></figure>
+
+<h3 id="常见问题排查"><a href="#常见问题排查" class="headerlink" title="常见问题排查"></a>常见问题排查</h3><ul>
+<li><strong>报错 “Connection refused” 或 “ECONNREFUSED”</strong>：<ul>
+<li>说明 OpenClaw 连不上 <code>llama.cpp</code>。请检查 <code>llama-server</code> 是否正在运行。</li>
+<li>检查端口号是否一致（配置文件里是 8080，启动命令里也是 8080）。</li>
+</ul>
+</li>
+<li><strong>报错 “404 Not Found”</strong>：<ul>
+<li>通常是因为 <code>baseUrl</code> 没写对。一定要确保是 <code>http://localhost:8080/v1</code>，不要漏掉 <code>/v1</code>。</li>
+</ul>
+</li>
+<li><strong>响应很慢</strong>：<ul>
+<li>这是本地部署的正常现象，取决于你的 CPU&#x2F;GPU 性能。如果太慢，可以尝试换更小的模型（如 Qwen-3B 或 Q4_K_S 量化版本）。</li>
+</ul>
+</li>
+</ul>
+<p>现在，你的 OpenClaw 就已经完全由你自己的电脑驱动了，数据完全本地化！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/openclaw/" class="category-chain-item">openclaw</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/openclaw/" class="print-no-link">#openclaw</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>openclaw安装与使用（接入本地或云端模型）</div>
+      <div>https://buildgw.github.io/2026/04/20/openclaw/openclaw安装与使用（接入本地或云端模型）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>饺子</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/04/20/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/cloudflare/%E8%87%AA%E5%BB%BA%E8%AE%A2%E9%98%85%E9%93%BE%E6%8E%A5/" title="自建订阅链接">
+                        <span class="hidden-mobile">自建订阅链接</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
