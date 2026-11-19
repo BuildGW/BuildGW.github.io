@@ -26,15 +26,16 @@
 <meta property="og:site_name" content="饺子の日志">
 <meta property="og:description" content="坐标系虽然国内的初高中数学对坐标系的介绍已经非常详细了，而且坐标系大家已经非常熟悉了，但是为了内容的完整性，我还是会专门用一节内容带大家回顾下坐标系的概念。也会详细讲解直角坐标系和极坐标系的适用情况。 概述坐标系（coordinate system）是我们在学校中开始学习几何时，第一个学到的东西。它为几何图形学中所有的东西（包括点、线、面等）赋予了一个坐标，有了坐标系我们可以通过文字和语言来描述顶">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://buildgw.github.io/assets/002-1.jpg">
-<meta property="og:image" content="https://buildgw.github.io/assets/002-2.jpg">
-<meta property="og:image" content="https://buildgw.github.io/assets/002-3.jpg">
+<meta property="og:image" content="https://buildgw.github.io/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-1.jpg">
+<meta property="og:image" content="https://buildgw.github.io/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-2.jpg">
+<meta property="og:image" content="https://buildgw.github.io/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-3.jpg">
 <meta property="article:published_time" content="2025-07-18T05:20:30.000Z">
-<meta property="article:modified_time" content="2025-07-18T06:55:36.019Z">
+<meta property="article:modified_time" content="2026-11-19T12:11:52.087Z">
 <meta property="article:author" content="饺子">
-<meta property="article:tag" content="高等数学">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="图形学">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://buildgw.github.io/assets/002-1.jpg">
+<meta name="twitter:image" content="https://buildgw.github.io/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-1.jpg">
   
   
   
@@ -286,9 +287,11 @@
 <p>你还可以自己定义一种坐标系，只要平面（或者空间）上的每个顶点都有一个唯一的坐标即可。</p>
 <h2 id="笛卡尔坐标系"><a href="#笛卡尔坐标系" class="headerlink" title="笛卡尔坐标系"></a>笛卡尔坐标系</h2><p>在<a target="_blank" rel="noopener" href="https://pengfeiw.github.io/">教程首页</a>展示的两个坐标系模型就是笛卡尔坐标系，也称直角坐标系。</p>
 <p>二维笛卡尔坐标系用来描述平面上的某一点的位置，包含一个<strong>主轴</strong>（后面称X轴）和<strong>纵轴</strong>（后面称Y轴），通常情况下X轴是水平方向的，从左指向右，Y轴是竖直方向的，从下指向上，X轴和Y轴的交点，称为该坐标系的原点（用O表示）。</p>
-<p><img src="/./assets/002-1.jpg" srcset="/img/loading.gif" lazyload alt="笛卡尔坐标系的x轴和y轴"></p>
+<img src="/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-1.jpg" srcset="/img/loading.gif" lazyload class="" title="笛卡尔坐标系的x轴和y轴">
+
 <p>假设平面中有一点A，A在X轴方向上的投影为Ax，A在Y轴上的投影Ay，Ax到原点O的距离为a，Ay到原点O的距离为b，那么点A的坐标为（a，b）。</p>
-<p><img src="/./assets/002-2.jpg" srcset="/img/loading.gif" lazyload alt="直角坐标系坐标"></p>
+<img src="/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-2.jpg" srcset="/img/loading.gif" lazyload class="" title="直角坐标系坐标">
+
 <p>扩展到三维，只需要在二维直角坐标系的基础上再添加一个坐标轴——<strong>Z轴</strong>，通常情况下，X轴、Y轴、Z轴是互相垂直的，但是可以通过一系列的变换，变成非垂直的情况（后面我会详细介绍坐标系变换的内容）。</p>
 <p>三维坐标系中顶点的坐标由三个分量组成<code>(x, y, z)</code>，<code>x</code>和<code>y</code>的意义与二维坐标系的<code>x</code>、<code>y</code>相同，<code>z</code>类似，表示顶点在Z轴的投影点到原点的距离。</p>
 <p>谈论到三维直角坐标系，经常会区分<strong>左手坐标系</strong>和<strong>右手坐标系</strong>。</p>
@@ -296,7 +299,7 @@
 <p>在三维坐标中，根据Z轴(深)的不同方向，分为“右手系”和“左手系”两种坐标系。当轴的方向是（在一般二维直角坐标系上：向右为X轴，向上为Y轴）从眼前伸向深处时，该坐标系是左手系，反之则是右手系。</p>
 </blockquote>
 <p>你一定见过类似如下的图。</p>
-<p><img src="/./assets/002-3.jpg" srcset="/img/loading.gif" lazyload alt="左手坐标系和右手坐标系"></p>
+<img src="/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E5%9D%90%E6%A0%87%E7%B3%BB/002-3.jpg" srcset="/img/loading.gif" lazyload class="" title="左手坐标系和右手坐标系">
 
                 
               </div>
@@ -315,12 +318,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="category-chain-item">计算机基础</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E7%AE%97%E6%B3%95/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" class="category-chain-item">高等数学</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="category-chain-item">线性代数</a>
   
   
 
@@ -337,7 +340,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" class="print-no-link">#高等数学</a>
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
+      
+        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#图形学</a>
       
     </div>
   
@@ -404,8 +409,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/3%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" title="线性代数基础02—三角函数">
-                        <span class="hidden-mobile">线性代数基础02—三角函数</span>
+                      <a href="/2025/07/18/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/3%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/" title="线性代数基础03—三角函数">
+                        <span class="hidden-mobile">线性代数基础03—三角函数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

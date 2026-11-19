@@ -19,15 +19,15 @@
   <meta name="author" content="饺子">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Redis 入门">
+    <meta name="description" content="Redis 入门Redis 是什么Redis（REmote DIctionary Server）是一个开源的、基于内存的 Key-Value 数据库，由 Salvatore Sanfilippo 于 2009 年发布，使用 C 语言编写。与 MySQL 这类把数据落盘的关系型数据库不同，Redis 把数据放在内存里，读写延迟通常在微秒级，因此常被用作缓存、计数器、排行榜、分布式锁和轻量消息队列。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis 入门">
 <meta property="og:url" content="https://buildgw.github.io/2025/06/16/redis/Redis%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="饺子の日志">
-<meta property="og:description" content="Redis 入门">
+<meta property="og:description" content="Redis 入门Redis 是什么Redis（REmote DIctionary Server）是一个开源的、基于内存的 Key-Value 数据库，由 Salvatore Sanfilippo 于 2009 年发布，使用 C 语言编写。与 MySQL 这类把数据落盘的关系型数据库不同，Redis 把数据放在内存里，读写延迟通常在微秒级，因此常被用作缓存、计数器、排行榜、分布式锁和轻量消息队列。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-16T05:20:30.000Z">
-<meta property="article:modified_time" content="2025-07-11T09:12:09.077Z">
+<meta property="article:modified_time" content="2026-11-19T12:12:46.805Z">
 <meta property="article:author" content="饺子">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3 字
+          992 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -276,7 +276,80 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Redis-入门"><a href="#Redis-入门" class="headerlink" title="Redis 入门"></a>Redis 入门</h1>
+                <h1 id="Redis-入门"><a href="#Redis-入门" class="headerlink" title="Redis 入门"></a>Redis 入门</h1><h2 id="Redis-是什么"><a href="#Redis-是什么" class="headerlink" title="Redis 是什么"></a>Redis 是什么</h2><p>Redis（REmote DIctionary Server）是一个开源的、基于内存的 Key-Value 数据库，由 Salvatore Sanfilippo 于 2009 年发布，使用 C 语言编写。与 MySQL 这类把数据落盘的关系型数据库不同，Redis 把数据放在内存里，读写延迟通常在微秒级，因此常被用作缓存、计数器、排行榜、分布式锁和轻量消息队列。</p>
+<p>一句话概括：<strong>Redis 是以内存为存储介质、以键值对为数据模型、支持多种数据结构的高性能数据库。</strong></p>
+<h2 id="为什么快"><a href="#为什么快" class="headerlink" title="为什么快"></a>为什么快</h2><ul>
+<li><strong>内存存储</strong>：省掉磁盘 I&#x2F;O，读写几乎只受网络与 CPU 影响。</li>
+<li><strong>命令执行单线程</strong>：避免锁竞争和上下文切换（Redis 6.0 之后网络 I&#x2F;O 改为多线程，但命令执行仍是单线程）。</li>
+<li><strong>高效的数据结构</strong>：String、List、Hash、Set、ZSet 会根据数据规模自动选择更紧凑的编码。</li>
+<li><strong>I&#x2F;O 多路复用</strong>：单线程就能处理大量并发连接。</li>
+</ul>
+<h2 id="五种基础数据类型"><a href="#五种基础数据类型" class="headerlink" title="五种基础数据类型"></a>五种基础数据类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>结构</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String</td>
+<td>字符串、数字、二进制</td>
+<td>缓存对象、计数器、分布式锁</td>
+</tr>
+<tr>
+<td>List</td>
+<td>有序、可重复的双端队列</td>
+<td>简单消息队列、最新列表</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>字段-值映射</td>
+<td>存储对象的各个字段</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>无序、去重</td>
+<td>标签、共同好友、抽奖</td>
+</tr>
+<tr>
+<td>ZSet</td>
+<td>带分数排序的集合</td>
+<td>排行榜、延时队列</td>
+</tr>
+</tbody></table>
+<p>常用命令示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># String：最基础的类型</span><br>SET user:1:name <span class="hljs-string">&quot;饺子&quot;</span><br>GET user:1:name<br>INCR article:1:views          <span class="hljs-comment"># 原子自增，适合计数器</span><br><br><span class="hljs-comment"># List：两端插入/弹出</span><br>LPUSH queue:mail <span class="hljs-string">&quot;msg1&quot;</span><br>RPOP queue:mail<br><br><span class="hljs-comment"># Hash：字段-值映射，适合存对象</span><br>HSET user:1 name <span class="hljs-string">&quot;饺子&quot;</span> age 18<br>HGETALL user:1<br><br><span class="hljs-comment"># Set：无序、去重，支持交并差</span><br>SADD post:1:tags <span class="hljs-string">&quot;Redis&quot;</span> <span class="hljs-string">&quot;缓存&quot;</span><br>SMEMBERS post:1:tags<br><br><span class="hljs-comment"># ZSet：带分数排序</span><br>ZADD rank:score 100 <span class="hljs-string">&quot;玩家A&quot;</span> 90 <span class="hljs-string">&quot;玩家B&quot;</span><br>ZREVRANGE rank:score 0 2 WITHSCORES<br></code></pre></td></tr></table></figure>
+
+<h2 id="过期与淘汰"><a href="#过期与淘汰" class="headerlink" title="过期与淘汰"></a>过期与淘汰</h2><ul>
+<li><code>EXPIRE key 60</code> &#x2F; <code>TTL key</code>：给键设置存活时间，适合缓存数据。</li>
+<li>内存不是无限的：配置 <code>maxmemory</code> 后，需要选择淘汰策略，如 <code>allkeys-lru</code>（所有键中淘汰最近最少使用的）、<code>volatile-lru</code>（只在设置了过期时间的键中淘汰）。</li>
+<li>生产环境一般把 Redis 定位成<strong>缓存</strong>而不是唯一数据源，重要数据仍要落库。</li>
+</ul>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><ul>
+<li><strong>RDB</strong>：按时间间隔把内存快照写入磁盘，文件小、恢复快，但可能丢失最近一段数据。</li>
+<li><strong>AOF</strong>：把写命令追加到日志文件，数据更完整，文件更大、恢复更慢。</li>
+<li>常见做法是 RDB + AOF 混合使用（Redis 4.0 起支持混合持久化）。</li>
+</ul>
+<h2 id="典型使用场景"><a href="#典型使用场景" class="headerlink" title="典型使用场景"></a>典型使用场景</h2><ul>
+<li><strong>缓存</strong>：挡住热点读请求，降低数据库压力。</li>
+<li><strong>会话存储</strong>：把 Session 放到 Redis，多实例共享。</li>
+<li><strong>排行榜 &#x2F; 计数器</strong>：ZSet 和 <code>INCR</code> 天然适合。</li>
+<li><strong>分布式锁</strong>：<code>SET key value NX EX 30</code>，注意释放时校验 value 并原子删除。</li>
+<li><strong>限流</strong>：固定窗口或滑动窗口计数。</li>
+<li><strong>消息队列</strong>：List 做简单队列，Stream 支持消费组。</li>
+</ul>
+<h2 id="缓存常见问题"><a href="#缓存常见问题" class="headerlink" title="缓存常见问题"></a>缓存常见问题</h2><ul>
+<li><strong>穿透</strong>：查询根本不存在的数据，请求每次都落到数据库。可用布隆过滤器或缓存空值缓解。</li>
+<li><strong>击穿</strong>：某个热点键失效的瞬间，大量请求同时打到数据库。可用互斥锁重建或逻辑过期缓解。</li>
+<li><strong>雪崩</strong>：大批键在同一时刻失效。可给过期时间加随机值、做多级缓存或提前预热。</li>
+</ul>
+<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><p>本地最简单的方式是用 Docker 起一个实例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d --name redis -p 6379:6379 redis:7<br>docker <span class="hljs-built_in">exec</span> -it redis redis-cli<br><br>127.0.0.1:6379&gt; SET hello world<br>OK<br>127.0.0.1:6379&gt; GET hello<br><span class="hljs-string">&quot;world&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>图形化客户端可以用 RedisInsight 或 Another Redis Desktop Manager。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Redis 的入门门槛不高：先掌握五种数据类型和对应命令，再理解过期、淘汰、持久化这几个影响可靠性的机制，最后结合“缓存”这个主要定位去了解穿透、击穿、雪崩的处理方式，基本就能在项目里用起来了。</p>
+
                 
               </div>
             
@@ -373,9 +446,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/06/16/hello-world/" title="Hello World">
+                      <a href="/2025/06/25/AI/MCP/MCP%E6%95%99%E7%A8%8B/" title="MCP 教程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hello World</span>
+                        <span class="hidden-mobile">MCP 教程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
