@@ -1,9 +1,7 @@
-
 ---
-title: openclaw安装与使用（接入本地或云端模型）
-tag: [openclaw]
+title: OpenClaw 安装与使用（接入本地或云端模型）
+tags: [openclaw, AI]
 date: 2026-04-20
-archive: false
 categories:
 - AI
 - openclaw
@@ -371,7 +369,7 @@ openclaw config set agents.defaults.model.primary "ollama/my-local-model"
 {
   "agents": {
     "defaults": {
-      "workspace": "C:\\Users\\13789\\.openclaw\\workspace",
+      "workspace": "C:\\Users\\<你的用户名>\\.openclaw\\workspace",
       "models": {
         "local-llama/Qwen3.5-9B-Q4_K_M": {
           "alias": "Local Qwen 9B"
@@ -387,7 +385,7 @@ openclaw config set agents.defaults.model.primary "ollama/my-local-model"
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "3965a5f9cf5efc7d9a343c4b1869d9e49e2961f5454253d3"
+      "token": "<你的网关 Token>"
     },
     "port": 18789,
     "bind": "loopback"
